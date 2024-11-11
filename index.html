@@ -84,7 +84,8 @@
 
     <script>
         function loadJSON() {
-            fetch('./Quota.json')
+            const url = './Quota.json?nocache=' + new Date().getTime();
+            fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     populateTable(data)
