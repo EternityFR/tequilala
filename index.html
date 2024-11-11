@@ -151,6 +151,7 @@
             }
         }
         function getFileModificationDate() {
+            const url = './Quota.json?nocache=' + new Date().getTime();
             fetch(url, { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('last-modified');
