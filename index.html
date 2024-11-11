@@ -1,10 +1,134 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test Quota Tequilala</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #444;
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            table-layout: fixed;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+
+        tr:hover {
+            background-color: #444;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .heading {
+            font-size: 24px;
+            text-align: center;
+        }
+        .date-modification {
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <h1 class="heading">Quota Tequilala</h1>
+        <p id="date-modification" class="date-modification"></p>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Bouteilles</th>
+                    <th>Heures</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadJSON() {
+            fetch('./Quota.json')
+                .then(response => response.json())
+                .then(data => {
+                    populateTable(data)
+                    getFileModificationDate();
+                })
+                .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
+        }
+        function populateTable(data) {
+            const tableBody = document.querySelector("#dataTable tbody");
+            tableBody.innerHTML = "";
+
+            for (const name in data) {
+                if (data.hasOwnProperty(name)) {
+                    const row = document.createElement("tr");
+
+                    const nameCell = document.createElement("td");
+                    const bottlesCell = document.createElement("td");
+                    const hoursCell = document.createElement("td");
+
+                    nameCell.textContent = name;
+                    bottlesCell.textContent = data[name].Bouteilles;
+                    hoursCell.textContent = data[name].Heures;
+
+                    row.appendChild(nameCell);
+                    row.appendChild(bottlesCell);
+                    row.appendChild(hoursCell);
+                    tableBody.appendChild(row);
+                }
+            }
+        }
+        function getFileModificationDate() {
+            fetch('./Quota.json', { method: 'HEAD' })
+                .then(response => {
+                    const lastModified = response.headers.get('last-modified');
+                    if (lastModified) {
+                        const date = new Date(lastModified);
+                        const formattedDate = date.toLocaleString();
+                        document.getElementById("date-modification").textContent = `Dernière modification : ${formattedDate}`;
+                    } else {
+                        console.error('La date de modification n\'est pas disponible.');
+                    }
+                })
+                .catch(error => console.error('Erreur lors de la récupération de la date de modification:', error));
+        }
+        window.onload = loadJSON;
+    </script>
 </body>
 </html>
