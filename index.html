@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Quota Tequilala</title>
+    <title>Quota Tequilala</title>
     <style>
         body {
             background-color: #121212;
@@ -74,6 +74,7 @@
                     <th>Nom</th>
                     <th>Bouteilles</th>
                     <th>Heures</th>
+					<th>Primes</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,14 +103,48 @@
                     const nameCell = document.createElement("td");
                     const bottlesCell = document.createElement("td");
                     const hoursCell = document.createElement("td");
+                    const bonusCell = document.createElement("td");
 
                     nameCell.textContent = name;
                     bottlesCell.textContent = data[name].Bouteilles;
+                    if (data[name].Bouteilles >= 2000) {
+                        bottlesCell.style.color = "green";
+                    } else {
+                        bottlesCell.style.color = "red";
+                        bottlesCell.textContent += " / 2000";
+                    }
+                    
                     hoursCell.textContent = data[name].Heures;
+                    if (data[name].Bouteilles <= 2999) {
+                        bonus = "0$";
+                    } else if (data[name].Bouteilles >= 3000 && data[name].Bouteilles <= 3999) {
+                        bonus = "15 000$";
+                    } else if (data[name].Bouteilles >= 4000 && data[name].Bouteilles <= 4999) {
+                        bonus = "20 000$";
+                    } else if (data[name].Bouteilles >= 5000 && data[name].Bouteilles <= 5999) {
+                        bonus = "25 000$";
+                    } else if (data[name].Bouteilles >= 6000 && data[name].Bouteilles <= 6999) {
+                        bonus = "30 000$";
+                    } else if (data[name].Bouteilles >= 7000 && data[name].Bouteilles <= 7999) {
+                        bonus = "35 000$";
+                    } else if (data[name].Bouteilles >= 8000 && data[name].Bouteilles <= 8999) {
+                        bonus = "40 000$";
+                    } else if (data[name].Bouteilles >= 9000 && data[name].Bouteilles <= 9999) {
+                        bonus = "45 000$";
+                    } else if (data[name].Bouteilles >= 10000 && data[name].Bouteilles <= 14999) {
+                        bonus = "50 000$";
+                    } else if (data[name].Bouteilles >= 15000 && data[name].Bouteilles <= 19999) {
+                        bonus = "75 000$";
+                    } else if (data[name].Bouteilles >= 20000) {
+                        bonus = "100 000$";
+                    }
+
+                    bonusCell.textContent = bonus;
 
                     row.appendChild(nameCell);
                     row.appendChild(bottlesCell);
                     row.appendChild(hoursCell);
+                    row.appendChild(bonusCell);
                     tableBody.appendChild(row);
                 }
             }
@@ -121,12 +156,12 @@
                     if (lastModified) {
                         const date = new Date(lastModified);
                         const formattedDate = date.toLocaleString();
-                        document.getElementById("date-modification").textContent = `Dernière modification : ${formattedDate}`;
+                        document.getElementById("date-modification").textContent = `Dernière mise à jour : ${formattedDate}`;
                     } else {
-                        console.error('La date de modification n\'est pas disponible.');
+                        console.error('La date de mise à jour n\'est pas disponible.');
                     }
                 })
-                .catch(error => console.error('Erreur lors de la récupération de la date de modification:', error));
+                .catch(error => console.error('Erreur lors de la récupération de la date de mise à jour:', error));
         }
         window.onload = loadJSON;
     </script>
