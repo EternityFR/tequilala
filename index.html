@@ -151,7 +151,7 @@
             }
         }
         function getFileModificationDate() {
-            fetch('./Quota.json', { method: 'HEAD' })
+            fetch(url, { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('last-modified');
                     if (lastModified) {
