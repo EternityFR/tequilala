@@ -5,6 +5,7 @@ CaptureScreen.ahk
 ignore.txt
 hours_output.txt
 names_output.txt
+ventes_output.txt
 Quota.ahk
 /screenshots
 git_push.cmd
