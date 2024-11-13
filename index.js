@@ -1,7 +1,7 @@
 function loadJSON() {
     const cssLink = document.createElement("link");
     cssLink.rel = "stylesheet";
-    cssLink.href = "./index.css?v=" + new Date().getTime();
+    cssLink.href = "./index.css?nocache=" + new Date().getTime();
     document.head.appendChild(cssLink);
     const quotasurl = './Quotas.json?nocache=' + new Date().getTime();
     const ventesurl = './Ventes.json?nocache=' + new Date().getTime();
