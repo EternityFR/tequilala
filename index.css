@@ -81,6 +81,20 @@ tr:hover {
     text-align: center;
 }
 
+.glow-effect {
+    color: #fff;
+    animation: rgbGlow 1s infinite alternate;
+    
+}
+
+@keyframes rgbGlow {
+    0% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; }
+    33% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    66% { text-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff; }
+    100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; }
+}
+
+
 @media (min-width: 768px) {
     th, td, .date-modification {
         font-size: 1.5vw;

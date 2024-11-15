@@ -31,11 +31,13 @@ function populatequotasTable(data) {
 
             nameCell.textContent = name;
             bottlesCell.textContent = data[name].Bouteilles;
-            if (data[name].Bouteilles >= 2000) {
-                bottlesCell.style.color = "green";
-            } else {
+            if (data[name].Bouteilles <= 1999) {
                 bottlesCell.style.color = "red";
                 bottlesCell.textContent += " / 2000";
+            } else if (data[name].Bouteilles >= 2000 && data[name].Bouteilles <= 19999) {
+                bottlesCell.style.color = "green";                
+            } else {
+                bottlesCell.style.color = "white";
             }
 
             hoursCell.textContent = data[name].Heures;
@@ -60,9 +62,9 @@ function populatequotasTable(data) {
             } else if (data[name].Bouteilles >= 15000 && data[name].Bouteilles <= 19999) {
                 bonus = "75 000$";
             } else if (data[name].Bouteilles >= 20000) {
-                bonus = "100 000$";
-            }
-
+                bonus = "100 000$ (max)";
+                bottlesCell.classList.add("glow-effect");
+			}
             bonusCell.textContent = bonus;
 
             row.appendChild(nameCell);
