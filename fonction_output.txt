@@ -1,5 +1,19 @@
 Employé
 
+Cadre
+
+Employé
+
+Employé
+
+Employé
+
+Employé
+
+Employé
+
+Employé confirmé
+
 Employé confirmé
 
 Employé
@@ -8,16 +22,3 @@ Employé
 
 Employé
 
-Employé
-
-Employé
-
-Employé
-
-Employé confirmé
-
-Employé
-
-Employé
-
-Employé
