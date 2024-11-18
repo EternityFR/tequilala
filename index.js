@@ -1,6 +1,7 @@
 function loadJSON() {
     const quotasurl = './Quotas.json?nocache=' + new Date().getTime();
     const ventesurl = './Ventes.json?nocache=' + new Date().getTime();
+    const listeurl = './Liste.json?nocache=' + new Date().getTime();
     fetch(quotasurl)
         .then(response => response.json())
         .then(data => {
@@ -13,6 +14,13 @@ function loadJSON() {
         .then(response => response.json())
         .then(data => {
             populateventesTable(data)
+        })
+        .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
+
+    fetch(listeurl)
+        .then(response => response.json())
+        .then(data => {
+            populatelisteTable(data)
         })
         .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
 }
@@ -35,7 +43,7 @@ function populatequotasTable(data) {
                 bottlesCell.style.color = "red";
                 bottlesCell.textContent += " / 2000";
             } else if (data[name].Bouteilles >= 2000 && data[name].Bouteilles <= 19999) {
-                bottlesCell.style.color = "green";                
+                bottlesCell.style.color = "green";
             } else {
                 bottlesCell.style.color = "white";
             }
@@ -64,7 +72,7 @@ function populatequotasTable(data) {
             } else if (data[name].Bouteilles >= 20000) {
                 bonus = "100 000$ (max)";
                 bottlesCell.classList.add("glow-effect");
-			}
+            }
             bonusCell.textContent = bonus;
 
             row.appendChild(nameCell);
@@ -95,6 +103,26 @@ function populateventesTable(data) {
                 row.appendChild(ventesCell);
                 tableBody.appendChild(row);
             }
+        }
+    }
+}
+function populatelisteTable(data) {
+    const tableBody = document.querySelector("#listeTable tbody");
+    tableBody.innerHTML = "";
+
+    for (const name in data) {
+        if (data.hasOwnProperty(name)) {
+                const row = document.createElement("tr");
+
+                const nameCell = document.createElement("td");
+                const fonctionCell = document.createElement("td");
+
+                nameCell.textContent = name;
+                fonctionCell.textContent = data[name].Fonction;
+
+                row.appendChild(nameCell);
+                row.appendChild(fonctionCell);
+                tableBody.appendChild(row);
         }
     }
 }
