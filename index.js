@@ -125,6 +125,7 @@ function populatelisteTable(data) {
                 tableBody.appendChild(row);
         }
     }
+    document.getElementById("total-employe").textContent = `Total d'employés : ${tableBody.rows.length}`;
 }
 function getFileModificationDate() {
     const url = './Quotas.json?nocache=' + new Date().getTime();
