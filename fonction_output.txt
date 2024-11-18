@@ -1,23 +1,16 @@
 Employé
-
-Cadre
-
-Employé
+a Cadre
 
 Employé
-
 Employé
-
 Employé
-
+Employé
 Employé
 
 Employé confirmé
 
 Employé confirmé
-
 Employé
-
 Employé
 
 Employé
