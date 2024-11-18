@@ -1,10 +1,12 @@
-Employé
+Co-patron
 
 Employé confirmé
 
 Employé
 
-Employé
+Manager
+
+Manager
 
 Employé
 
@@ -14,10 +16,6 @@ Employé
 
 Employé
 
-Employé confirmé
+Superviseur
 
-Employé
-
-Employé
-
-Employé
+Cadre
